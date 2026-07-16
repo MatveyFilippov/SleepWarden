@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 import logging
+from app import start as start_app
 
 
 logging.basicConfig(
@@ -21,4 +22,4 @@ logging.Formatter.formatTime = (
 
 
 if __name__ == "__main__":
-    pass  # TODO: run app
+    start_app(host="0.0.0.0", port=1216)
