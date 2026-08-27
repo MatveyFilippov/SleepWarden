@@ -1,9 +1,11 @@
 import logging
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
+import uvicorn
+from .__version__ import __version__
 
 
-APP = FastAPI(version="1.0.0", title="SleepWarden")
+APP = FastAPI(version=__version__, title="SleepWarden")
 log = logging.getLogger("app.base")
 
 
@@ -32,7 +34,5 @@ async def global_exception_handler(request: Request, ex: Exception):
 
 
 def start(host: str, port: int):
-    log.debug("Starting app")
-    import uvicorn
     log.info(f"Start application (-v{APP.version}) on http://{host}:{port}")
     uvicorn.run(APP, host=host, port=port, log_level=logging.WARNING, access_log=False)
